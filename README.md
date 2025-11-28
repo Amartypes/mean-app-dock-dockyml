@@ -19,6 +19,7 @@ This project is a fully containerized **MEAN (MongoDB, Express, Angular, Node.js
 ---
 
 ##  **2. Dockerization**
+![Description](screenshots/dockerbuildimage.png)
 ### Backend
 - Backend updated to read the MongoDB URL from environment variables:
   ```js
@@ -91,6 +92,7 @@ the entire project (backend, frontend, Dockerfiles, docker-compose.yml) was **pu
 ---
 
 #  **8. Jenkins Installation on the VM**
+![Description](screenshots/jenkinsconfig1.png)
 After pushing to GitHub, Jenkins was installed on the same Ubuntu VM:
 
 ```bash
@@ -112,6 +114,7 @@ Jenkins was configured with:
 ---
 
 #  **9. CI/CD Pipeline (Jenkinsfile)**
+![Description](screenshots/jenkinsconfig2.png)
 The pipeline performs:
 
 ### ✔ Checkout from GitHub  
@@ -122,6 +125,9 @@ The pipeline performs:
 ### ✔ Restart containers via `docker compose up -d`  
 
 This enables **automatic deployment on every Git push**.
+![Description](screenshots/jenkinsoutput.png)
+
+
 
 ---
 
@@ -182,25 +188,11 @@ http://<server-ip>/
 ---
 
 #  **11. Application Live**
+![Description](screenshots/finalapp.png)
+ 
 - Angular frontend served through NGINX on port **80**
 - Backend API accessible through `/api`
 - Automatic deployment via Jenkins on each Git push
 - Docker images automatically versioned and pulled from Docker Hub
 
----
-
-#  **Next Enhancements (Optional)**
-- Add HTTPS using Let's Encrypt + Certbot
-- Move NGINX into Docker Compose (avoids IP change issues)
-- Add environment-specific tags (dev/stage/prod)
-- Implement monitoring (Prometheus + Grafana)
-
----
-
-#  **Done!**
-This project now features:
-- Full Dockerization  
-- Real CI/CD pipeline  
-- Reverse proxy architecture  
-- Automated deployments  
-- Cloud-hosted production setup  
+ 
