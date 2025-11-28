@@ -1,4 +1,6 @@
 # MEAN Stack Application – Dockerized with CI/CD and NGINX Reverse Proxy
+![Description](screenshots/finalapp.png)
+
 
 This project is a fully containerized **MEAN (MongoDB, Express, Angular, Node.js)** application, deployed using **Docker Compose**, automated through **Jenkins CI/CD**, and exposed securely using an **NGINX reverse proxy**.
 
@@ -28,6 +30,7 @@ This project is a fully containerized **MEAN (MongoDB, Express, Angular, Node.js
 - Backend image built and tested locally.
 
 ### Frontend
+
 - Angular project built using:
   ```
   ng build --prod
