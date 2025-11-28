@@ -11,7 +11,7 @@ services:
       - appnet
 
   backend:
-    image: backendimagedd
+    image: backendimagev1
     container_name: backend
     restart: always
     depends_on:
@@ -24,7 +24,7 @@ services:
       - appnet
 
   frontend:
-    image: frontendimage
+    image: frontendimagev1
     container_name: frontend
     restart: always
     depends_on:
