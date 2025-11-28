@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
+        DOCKER_HUB_USERNAME = "amardocks"
+        FRONTEND_IMAGE = "frontendimagev2"
+        BACKEND_IMAGE = "backendimagev2"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/Amartypes/mean-app-dock-dockyml.git'
+            }
+        }
+
+        stage('Build Backend Image') {
+            steps {
+                sh "cd backend"
+                sh "docker build -t ${DOCKER_HUB_USERNAME}/${BACKEND_IMAGE}:latest backend"
+            }
+        }
+
+        stage('Build Frontend Image') {
+            steps {
+                sh "cd frontend"
+                sh "docker build -t ${DOCKER_HUB_USERNAME}/${FRONTEND_IMAGE}:latest frontend"
+            }
+        }
+
+        stage('Docker Hub Login') {
+            steps {
+                sh "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
+            }
+        }
+
+        stage('Push Images to Docker Hub') {
+            steps {
+                sh "docker push ${DOCKER_HUB_USERNAME}/${BACKEND_IMAGE}:latest"
+                sh "docker push ${DOCKER_HUB_USERNAME}/${FRONTEND_IMAGE}:latest"
+            }
+        }
+
+        stage('Deploy Containers') {
+            steps {
+                sh "echo 'Deploying new containers...'"
+                sh "docker compose pull"
+                sh "docker compose up -d"
+            }
+        }
+    }
+}
