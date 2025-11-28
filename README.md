@@ -127,6 +127,8 @@ The pipeline performs:
 This enables **automatic deployment on every Git push**.
 ![Description](screenshots/jenkinsoutput.png)
 
+![Description](screenshots/jenkinsoutput8.png)
+
 
 
 ---
