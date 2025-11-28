@@ -11,7 +11,7 @@ services:
       - appnet
 
   backend:
-    image: backendimagev2
+    image: amardocks/backendimagev2:latest
     container_name: backend
     restart: always
     depends_on:
@@ -24,7 +24,7 @@ services:
       - appnet
 
   frontend:
-    image: frontendimagev2
+    image: amardocks/frontendimagev2:latest
     container_name: frontend
     restart: always
     depends_on:
@@ -40,4 +40,3 @@ networks:
 
 volumes:
   mongo_data:
-
